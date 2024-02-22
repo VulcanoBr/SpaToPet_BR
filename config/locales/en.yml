@@ -1,3 +1,17 @@
 en:
   app_name: 'Pets Spa'
   meta_title: 'Pets Spa - The best place for your pet'
+  activerecord:
+    attributes:
+      user:
+        password: "Password"
+        first_name: "First Name"
+        last_name: "Last Name"
+        email: "Email"
+        username: "Username"
+        phone: "Phone"
+    errors:
+      messages:
+        blank: "Can't be blank"
+        too_short: "Is too short (minimum is %{count} characters)"
+        invalid: "Invalid"
