@@ -73,3 +73,5 @@ end
 
 
 
+
+gem "tailwindcss-rails", "~> 2.3"
