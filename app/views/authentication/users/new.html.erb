@@ -5,6 +5,16 @@
     <div><%= message %></div>
   <% end %>
 
+  <div data-controller="previews">
+    <%= form.label :avatar, 'Tu foto' %>
+    <%= form.file_field :avatar, direct_upload: true, data: { previews_target: "input", action: "change->previews#preview" }  %>
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, class: 'avatar-preview', data: { previews_target: "preview" } %>
+    <% else %>
+      <%= image_tag 'placeholder.jpg', class: 'avatar-preview', data: { previews_target: "preview" } %>
+    <% end %>
+  </div>
+
   <div>
     <%= form.label :first_name %>
     <%= form.text_field :first_name, required: true %>
