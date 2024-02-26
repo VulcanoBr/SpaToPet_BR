@@ -1,0 +1,32 @@
+<div id="<%= dom_id appointment_type %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Payment required:</strong>
+    <%= appointment_type.payment_required %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= appointment_type.name %>
+  </p>
+
+  <p class="my-5 flex justify-start items-center gap-3">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= appointment_type.user.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Price:</strong>
+    <%= appointment_type.price %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= appointment_type.description %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this appointment type", appointment_type, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this appointment type", edit_appointment_type_path(appointment_type), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
