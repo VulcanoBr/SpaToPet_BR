@@ -9,7 +9,7 @@ class Authentication::SessionsController < ApplicationController
       redirect_to root_path, notice: "Logged in successfully"
     else
       flash[:alert] = "Invalid login credentials"
-      render :new, status: :unprocessible_entity
+      render :new, status: :unauthorized
     end
   end
 
