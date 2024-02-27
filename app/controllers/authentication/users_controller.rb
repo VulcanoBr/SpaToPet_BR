@@ -16,6 +16,11 @@ class Authentication::UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to root_path, notice: 'User was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

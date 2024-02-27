@@ -1,4 +1,6 @@
 class AppointmentTypesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize!
   before_action :set_appointment_type, only: %i[ show edit update destroy ]
 
   # GET /appointment_types or /appointment_types.json

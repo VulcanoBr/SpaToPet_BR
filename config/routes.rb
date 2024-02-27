@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :locals
+  resources :cities
   resources :appointment_types
   namespace :authentication, as: '', path: '' do
     resources :users, only: [:new, :create, :edit, :update], path: '/register', path_names: { new: '/' }
