@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pets
   resources :locals
   resources :cities
   resources :appointment_types

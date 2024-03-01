@@ -23,8 +23,8 @@ class AppointmentTypesController < ApplicationController
 
   # POST /appointment_types or /appointment_types.json
   def create
-    @appointment_type = AppointmentType.new(appointment_type_params)
-    @appointment_type.user = current_user
+    @appointment_type = current_user.appointment_types.new(appointment_type_params.merge(user: current_user))
+
     respond_to do |format|
       if @appointment_type.save
         format.html { redirect_to appointment_type_url(@appointment_type), notice: "Appointment type was successfully created." }

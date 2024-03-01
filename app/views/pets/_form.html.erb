@@ -1,0 +1,47 @@
+<%= form_with(model: pet, class: "contents") do |form| %>
+  <% if pet.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+
+      <ul>
+        <% pet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div data-controller="previews">
+    <%= form.label :photo %>
+    <%= form.file_field :photo, direct_upload: true, data: { previews_target: "input", action: "change->previews#preview" } %>
+    <% if pet.photo.attached? %>
+      <%= image_tag pet.photo, class: 'avatar-preview', data: { previews_target: "preview" } %>
+    <% else %>
+      <%= image_tag 'placeholder.jpg', class: 'avatar-preview', data: { previews_target: "preview" } %>
+    <% end %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :breed %>
+    <%= form.text_field :breed, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :kind %>
+    <%= form.select :kind, Pet.kinds.map { |key, value| [key.capitalize, value.to_i] }, { prompt: "Select Kind" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  
+  <div class="my-5">
+    <%= form.label :important_data %>
+    <%= form.rich_text_area :important_data, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
