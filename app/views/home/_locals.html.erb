@@ -1,0 +1,8 @@
+<div id="<%= dom_id local_obj %>">
+  <%= link_to '#', class:"p-6 border shadow-xl rounded-xl block hover:shadow-lg transition ease-in duration-300 relative overflow-hidden" do%>
+    <p class="my-5 flex flex-col items-start justify-center">
+      <strong>Local ubicado en la ciudad de: </strong>
+      <%= local_obj.city.name %>
+    </p>
+  <% end %>
+</div>

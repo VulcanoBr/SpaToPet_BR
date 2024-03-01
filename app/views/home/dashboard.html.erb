@@ -1,0 +1,12 @@
+<div class="max-w-5xl mx-auto pb-8 rounded shadow-xl border">
+  <div class="px-6 py-10 rounded-t-xl bg-gray-50">
+    <h1 class="text-3xl font-extrabold text-center"><%= current_user.first_name %>'s Dashboard Page</h1>
+    <p class="text-center text-gray-600 mt-2">Book your prefered time slot using the appointment options below.</p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 px-8 pt-8">
+    <% @locals.each do |local_obj| %>
+      <%= render "home/locals", local_obj: local_obj %>
+    <% end %>
+  </div>
+</div>
