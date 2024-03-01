@@ -16,7 +16,12 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-    @locals = Local.all
+    @cities = City.all
+    if params[:city_id].present?
+      @locals = Local.where(city_id: params[:city_id])
+    else
+      @locals = Local.all
+    end
   end
 
   def dashboard_admin

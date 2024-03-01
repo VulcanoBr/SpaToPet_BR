@@ -4,6 +4,12 @@
     <p class="text-center text-gray-600 mt-2">Book your prefered time slot using the appointment options below.</p>
   </div>
 
+  <div class="flex overflow-x-scroll xl:overflow-x-hidden gap-2 my-4">
+    <%= render(CityComponent.new) %>
+
+    <%= render(CityComponent.with_collection(@cities)) %>
+  </div>
+
   <div class="grid grid-cols-3 gap-6 px-8 pt-8">
     <% @locals.each do |local_obj| %>
       <%= render "home/locals", local_obj: local_obj %>
