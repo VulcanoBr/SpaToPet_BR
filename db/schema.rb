@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_01_150233) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_01_160130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -63,6 +63,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_150233) do
     t.index ["user_id"], name: "index_appointment_types_on_user_id"
   end
 
+  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "status"
+    t.uuid "appointment_type_id", null: false
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "client_id", null: false
+    t.uuid "pet_id"
+    t.uuid "local_id"
+    t.index ["appointment_type_id"], name: "index_appointments_on_appointment_type_id"
+    t.index ["client_id"], name: "index_appointments_on_client_id"
+    t.index ["local_id"], name: "index_appointments_on_local_id"
+    t.index ["pet_id"], name: "index_appointments_on_pet_id"
+  end
+
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -105,6 +121,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_150233) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointment_types", "users"
+  add_foreign_key "appointments", "appointment_types"
+  add_foreign_key "appointments", "locals"
+  add_foreign_key "appointments", "pets"
+  add_foreign_key "appointments", "users", column: "client_id"
   add_foreign_key "locals", "cities"
   add_foreign_key "pets", "users"
 end
