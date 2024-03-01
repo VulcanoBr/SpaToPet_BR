@@ -13,6 +13,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    appointment_type = params[:appointment_type].gsub("-", " ")
+    @appointment_type = AppointmentType.find_by(name: appointment_type)
   end
 
   # GET /appointments/1/edit
@@ -22,6 +24,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = current_user.appointments.new(appointment_params.merge(client: current_user))
+    @appointment_type = AppointmentType.find(params[:appointment][:appointment_type_id])
 
     respond_to do |format|
       if @appointment.save
@@ -68,7 +71,7 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(
         :status, :appointment_type_id,
         :start_at, :end_at,
-        :notes, :pet_id
+        :notes, :pet_id, :local_id
       )
     end
 end

@@ -23,11 +23,28 @@
     <%= form.collection_select :pet_id, current_user.pets, :id, :name, { prompt: "Select Pet" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <%= form.hidden_field :local_id, value: params[:local_id] %>
 
   <div class="mb-6">
     <%= form.label :notes %>
     <%= form.rich_text_area :notes %>
   </div>
+
+  <% if @appointment.new_record? %>
+    <div class="mb-6">
+      <div class="rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative">
+        <%= form.label :appointment_type_id, "appointment type"%>
+        <input type="hidden" name="appointment[appointment_type_id]" value="<%= @appointment_type.id %>">
+        <div class="flex items-start">
+          <div class="text-3xl font-bold mr-3"><%= @appointment_type.name %>
+            <%#= render(BadgedComponent.new(appointment_type: @appointment_type)) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <%= @appointment.appointment_type.name %>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :start_at %>

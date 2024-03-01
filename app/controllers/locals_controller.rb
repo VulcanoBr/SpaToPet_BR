@@ -1,6 +1,6 @@
 class LocalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize!
+  before_action :authorize!, except: %i[show]
   before_action :set_local, only: %i[ show edit update destroy ]
 
   # GET /locals or /locals.json
@@ -10,6 +10,7 @@ class LocalsController < ApplicationController
 
   # GET /locals/1 or /locals/1.json
   def show
+    @appointment_types = AppointmentType.order(name: :asc)
   end
 
   # GET /locals/new
