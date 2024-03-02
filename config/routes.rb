@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :cities
   resources :appointment_types
   resources :appointments
+  resources :payments
 
   get '/dashboard', to: 'home#dashboard', as: 'dashboard'
   get '/dashboard_admin', to: 'home#dashboard_admin', as: 'dashboard_admin'

@@ -1,0 +1,18 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div>
+    <p class="font-bold mb-2">Depositar en la siguiente cuenta</p>
+    <p class="w-max mx-auto p-1 border-2 border-gray-500 border-double my-2">555-55555-555555-55555</p>
+  </div>
+  
+  <div class="w-2/5">
+    <p class="font-bold mb-2">Transferencia a la siguiente cuenta, yape o plin</p>
+    <%= image_tag 'qr_yape.jpeg', class: 'rounded-t-xl w-1/2 h-2/4 mx-auto' %>
+  </div>
+  
+  <div >
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label :receipt %>
+    <%= f.file_field :receipt %>
+    <%= f.hidden_field :_destroy %>
+  </div>
+</div>

@@ -15,6 +15,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new
     appointment_type = params[:appointment_type].gsub("-", " ")
     @appointment_type = AppointmentType.find_by(name: appointment_type)
+    @appointment.payments.build # This line is added to the new action to build a payment object for the appointment.
   end
 
   # GET /appointments/1/edit
@@ -71,7 +72,8 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(
         :status, :appointment_type_id,
         :start_at, :end_at,
-        :notes, :pet_id, :local_id
+        :notes, :pet_id, :local_id,
+        payments_attributes: [:id, :billing_status, :user_id, :receipt, :_destroy]
       )
     end
 end
