@@ -15,4 +15,26 @@
       <%= render "home/locals", local_obj: local_obj %>
     <% end %>
   </div>
+  <div>
+    <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Check your last 5 appointments.</h3>
+    <table class="w-full table-collapse">
+      <thead>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+      </thead>
+      <tbody>
+        <%= render @appointments %>
+      </tbody>
+    </table>
+
+    <div class="flex justify-end mt-4">
+      <%= link_to "View all appointments", profile_path(current_user.id), class: "text-blue-500" %>
+    </div>
+  </div>
 </div>

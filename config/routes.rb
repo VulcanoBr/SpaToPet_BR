@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :appointments
   resources :payments
 
+  get "/profile/:id", to: "users#show", as: "profile"
+
   get '/dashboard', to: 'home#dashboard', as: 'dashboard'
   get '/dashboard_admin', to: 'home#dashboard_admin', as: 'dashboard_admin'
   get '/welcome', to: 'home#welcome', as: 'welcome'

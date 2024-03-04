@@ -1,27 +1,10 @@
-<div id="<%= dom_id appointment %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= appointment.status %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Clientr:</strong>
-    <%= appointment.client.first_name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Start at:</strong>
-    <%= appointment.start_at %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">End at:</strong>
-    <%= appointment.end_at %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this appointment", appointment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this appointment", edit_appointment_path(appointment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr id="<%= dom_id appointment %>">
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.status %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.pet&.name %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.pet&.breed %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.pet&.kind %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.start_at.strftime('%b %e, %Y at %l:%M %p') %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.end_at.strftime('%b %e, %Y at %l:%M %p') %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.appointment_type.name %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= appointment.payments&.any? ? appointment.payments&.first.billing_status : "No required" %></td>
+</tr>
