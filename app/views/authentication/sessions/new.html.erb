@@ -1,17 +1,24 @@
-<%= form_with(url: sessions_path) do |form| %>
-    <div>
-      <%= form.label :login, 'Login' %>
-      <%= form.text_field :login, required: true %>
-    </div>
-  
-    <div>
-      <%= form.label :password, 'Password' %>
-      <%= form.password_field :password, required: true %>
-    </div>
-  
-    <div>
-      <%= form.submit %>
-    </div>
-<% end %>
+<div class="w-2/6 lg:w-3/12 bg-white shadow-lg rounded-lg p-8 mx-auto my-7">
+  <h1 class="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-teal-500 text-transparent bg-clip-text">Login</h1>
 
-<%= link_to "Forgot your password?", new_password_reset_path %>
+  <%= form_with(url: sessions_path) do |form| %>
+      <div class="inputBox w-full mb-4">
+        <%= form.text_field :login, required: true, class: 'p-2' %>
+        <%= form.label :login, 'Email o username', class: 'font-semibold' %>
+      </div>
+    
+      <div class="inputBox w-full mb-4">
+        <%= form.password_field :password, required: true, class: 'p-2' %>
+        <%= form.label :password, 'Password', class: 'font-semibold' %>
+      </div>
+    
+      <div class="cursor-pointer mx-auto w-min bg-gradient-to-r from-blue-400 to-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-500 transition duration-300 font-bold text-2xl my-5">
+        <%= form.submit class: 'cursor-pointer'%>
+      </div>
+  <% end %>
+
+  <div class="mx-auto w-max">
+    <%= link_to "Forgot your password?", new_password_reset_path, class: 'text-blue-400 font-semibold' %>
+  </div>
+
+</div>

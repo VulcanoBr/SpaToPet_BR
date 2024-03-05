@@ -1,2 +1,12 @@
-<h1>Home#welcome</h1>
-<p>Find me in app/views/home/welcome.html.erb</p>
+<div class="flex flex-col md:flex-row items-center justify-between px-6 py-12 bg-white">
+  <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
+    <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-teal-500 text-transparent bg-clip-text mb-4">¡Reserva baños, sesiones de spa y mucho mas para tus mascotas!</h1>
+    <p class="text-lg text-gray-700 my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+    <%= link_to 'Reservar', new_user_path, class: "bg-gradient-to-r from-blue-400 to-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-500 transition duration-300 font-bold text-2xl my-5" %>
+  </div>
+
+  <div class="md:w-1/2">
+    <%= image_tag('svg/dog.svg', alt: 'Mascota', class: 'w-full') %>
+  </div>
+</div>

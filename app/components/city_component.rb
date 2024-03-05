@@ -19,12 +19,16 @@ class CityComponent < ViewComponent::Base
   end
 
   def classes
-    "city text-gray-600 px-3 py-2 rounded-xl drop-shadow-sm hover:bg-gray-300 #{background}"
+    "city #{text_color} px-3 py-2 rounded-xl drop-shadow-sm hover:bg-blue-400 hover:text-white #{background} font-semibold"
   end
 
   private
 
   def background
-    active? ? "bg-gray-300" : "bg-white"
+    active? ? "bg-gradient-to-r from-blue-400 to-teal-500" : "bg-white"
+  end
+
+  def text_color
+    active? ? "text-white" : "text-gray-600"
   end
 end

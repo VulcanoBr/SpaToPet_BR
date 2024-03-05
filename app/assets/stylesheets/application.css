@@ -17,3 +17,62 @@
   height: 200px;
   width: 200px;
  }
+
+ .inputBox {
+  position: relative;
+}
+
+.inputBox input,
+.inputBox textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(165, 164, 164, 0.7);
+  background: rgb(247, 247, 247);
+  border-radius: 5px;
+  outline: none;
+  color: #60A6FB;
+  font-size: 1em;
+  transition: 0.5s;
+}
+
+.inputBox label {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  letter-spacing: 0.2em;
+  color: #60A6FB;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.inputBox input:valid ~ label,
+.inputBox input:focus ~ label,
+.inputBox textarea:valid ~ label,
+.inputBox textarea:focus ~ label {
+  color: #60A6FB;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: rgb(235, 235, 235);
+  border-left: 1px solid #60A6FB;
+  border-right: 1px solid #60A6FB;
+  letter-spacing: 0.2em;
+}
+
+.inputBox:nth-child(2) input:valid ~ label,
+.inputBox:nth-child(2) input:focus ~ label,
+.inputBox:nth-child(2) textarea:valid ~ label,
+.inputBox:nth-child(2) textarea:focus ~ label {
+  background: rgb(235, 235, 235);
+  color:#60A6FB;
+  border-radius: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus,
+.inputBox textarea:valid,
+.inputBox textarea:focus {
+  border: 1px solid #60A6FB;
+}
