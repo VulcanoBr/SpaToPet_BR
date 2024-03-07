@@ -1,4 +1,4 @@
-<div class="max-w-5xl mx-auto pb-8 rounded shadow-xl border">
+<div class="w-screen lg:w-9/12 mx-auto p-5 mt-3 rounded shadow-xl border">
   <div class="px-6 py-10 rounded-t-xl bg-gray-50">
     <h1 class="text-3xl font-extrabold text-center"><%= current_user.first_name %>'s Dashboard Page</h1>
     <p class="text-center text-gray-600 mt-2">Book your prefered time slot using the appointment options below.</p>
@@ -10,14 +10,14 @@
     <%= render(CityComponent.with_collection(@cities)) %>
   </div>
 
-  <div class="grid grid-cols-3 gap-6 px-8 pt-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-8 pt-8">
     <% @locals.each do |local_obj| %>
       <%= render "home/locals", local_obj: local_obj %>
     <% end %>
   </div>
   <div>
     <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Check your last 5 appointments.</h3>
-    <table class="w-full table-collapse">
+    <table class="w-full table">
       <thead>
         <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
         <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>

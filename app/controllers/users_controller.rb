@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @appointments = current_user.appointments.order(created_at: :desc)
+    @pagy, @appointments = pagy(@appointments, items: 12)
   end
   
 end

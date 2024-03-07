@@ -1,23 +1,32 @@
-<h1>Hi!!!</h1>
-<p>These are all your appointments:</p>
-<div class="my-5 flex justify-between w-2/5">
-  <h3>Add a new pet: </h3>
-  <%= link_to "Add a new pet", new_pet_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-</div>
-<div>
-  <table class="w-full table-collapse">
-    <thead>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
-      <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
-    </thead>
-    <tbody>
-      <%= render @appointments %>
-    </tbody>
-  </table>
+<div class="w-full h-full mx-auto p-5">
+  <div class="flex justify-between">
+    <div>
+      <h1 class="text-xl text-blue-500 font-semibold">Hello <strong class="font-bold text-black"><%= current_user.first_name %></strong></h1>
+      <p>These are all your appointments:</p>
+    </div>
+    <div class="my-5 flex justify-end items-center w-1/5">
+      <%= link_to "Add a new pet", new_pet_path, class: "rounded-lg py-3 px-5 bg-teal-400 text-white block font-bold" %>
+    </div>
+  </div>
+  
+  <div>
+    <%== pagy_nav(@pagy) %>
+    <table class="w-full table">
+      <thead>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+      </thead>
+      <tbody>
+        <%= turbo_frame_tag "appointments-#{@pagy.page}" do %>
+          <%= render @appointments %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
