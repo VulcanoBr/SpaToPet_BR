@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_action :authorize!, only: [:dashboard_admin]
 
   def rooting
-    if user_signed_in? && (current_user.admin? ||current_user.client?)
+    if user_signed_in? && current_user.client?
       redirect_to dashboard_path
     elsif user_signed_in? && (current_user.admin? || current_user.stylist?)
       redirect_to dashboard_admin_path
@@ -26,5 +26,6 @@ class HomeController < ApplicationController
   end
 
   def dashboard_admin
+    @appointments = Appointment.order(created_at: :desc)
   end
 end

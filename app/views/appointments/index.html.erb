@@ -1,10 +1,26 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Appointments</h1>
-    <%= link_to "New appointment", new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="appointments" class="min-w-full">
-    <%= render @appointments %>
+  <div>
+    <%== pagy_nav(@pagy) %>
+    <table class="w-full table">
+      <thead>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+      </thead>
+      <tbody>
+        <% @appointments.each do |appointment| %>
+          <%= render "home/appointments", appointment: appointment %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

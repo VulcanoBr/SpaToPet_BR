@@ -68,6 +68,6 @@ class LocalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def local_params
-      params.require(:local).permit(:city_id, :address)
+      params.require(:local).permit(:city_id, :address, :image)
     end
 end

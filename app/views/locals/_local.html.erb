@@ -1,17 +1,28 @@
-<div id="<%= dom_id local %>">
-  <p class="my-5 flex gap-5">
-    <strong class="block font-medium mb-1">City:</strong>
-    <%= local.city&.name %>
-  </p>
+<div id="<%= dom_id local %>" class="flex flex-col sm:flex-row w-full rounded-lg bg-white shadow-secondary-2 border border-gray-200">
+  <div class="w-full sm:w-1/2">
+    <% if local.image.attached? %>
+      <%= image_tag local.image, class: 'w-full h-full rounded-tl-lg rounded-bl-lg' %>
+    <% else %>
+      <%= image_tag 'placeholder.jpg', class: 'w-full h-full rounded-tl-lg rounded-bl-lg' %>
+    <% end %>
+  </div>
 
-  <p class="my-5 flex gap-5">
-    <strong class="block font-medium mb-1">Address:</strong>
-    <%= local.address %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this local", local, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this local", edit_local_path(local), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <div class="w-full sm:w-1/2 ml-2 sm:ml-4">
+    <div class="my-5 flex flex-col gap-5">
+      <strong class="block font-medium mb-1">City:</strong>
+      <p class="pl-12"><%= local.city&.name %></p>
+    </div>
+  
+    <div class="my-5 flex flex-col gap-5">
+      <strong class="block font-medium mb-1">Address:</strong>
+      <p class="pl-2 flex-wrap w-full break-words"><%= local.address %></p>
+    </div>
+  
+    <% if action_name != "show" %>
+      <div class="flex flex-row items-center justify-center sm:justify-start w-full">
+        <%= link_to "Show", local, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Edit", edit_local_path(local), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      </div>
+    <% end %>
+  </div>
 </div>

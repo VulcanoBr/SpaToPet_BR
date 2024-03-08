@@ -3,7 +3,8 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.order(created_at: :desc)
+    @pagy, @appointments = pagy(@appointments, items: 10)
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -42,11 +43,9 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully updated." }
-        format.json { render :show, status: :ok, location: @appointment }
+        format.html { redirect_to appointments_path, notice: "Appointment was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -33,7 +33,7 @@ local1 = Local.create!(
 )
 
 local2 = Local.create!(
-  address: "Av. Los Aranandanos 123",
+  address: "Av. Los Arandanos 123",
   city: city2
 )
 
