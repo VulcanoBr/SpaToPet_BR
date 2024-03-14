@@ -3,8 +3,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = Appointment.order(created_at: :desc)
-    @pagy, @appointments = pagy(@appointments, items: 10)
+    @pagy, @appointments = pagy(FindAppointments.new.call(appointment_params_index), items: 10)
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -74,5 +73,9 @@ class AppointmentsController < ApplicationController
         :notes, :pet_id, :local_id,
         payments_attributes: [:id, :billing_status, :user_id, :receipt, :_destroy]
       )
+    end
+
+    def appointment_params_index
+      params.permit(:query_text, :order_by, :status)
     end
 end
