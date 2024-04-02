@@ -58,22 +58,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_162051) do
     t.boolean "payment_required", null: false
     t.uuid "user_id", null: false
     t.integer "price", null: false
+    t.string "color", default: "#000000"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "color", default: "#000000"
     t.index ["user_id"], name: "index_appointment_types_on_user_id"
   end
 
   create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "status", default: 0
     t.uuid "appointment_type_id", null: false
+    t.uuid "local_id"
+    t.uuid "pet_id"
+    t.uuid "client_id", null: false
     t.datetime "start_at"
     t.datetime "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "client_id", null: false
-    t.uuid "pet_id"
-    t.uuid "local_id"
     t.index ["appointment_type_id"], name: "index_appointments_on_appointment_type_id"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["local_id"], name: "index_appointments_on_local_id"

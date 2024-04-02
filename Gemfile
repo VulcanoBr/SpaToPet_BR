@@ -56,6 +56,7 @@ group :development, :test do
   gem "byebug", "~> 11.1"
   gem "factory_bot_rails", "~> 6.4"
   gem "rspec-rails", "~> 6.1"
+  gem "dotenv-rails"
 end
 
 group :development do
@@ -73,5 +74,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "simplecov", require: false
 end
 

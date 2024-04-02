@@ -5,7 +5,7 @@ class CreateAppointmentTypes < ActiveRecord::Migration[7.1]
       t.boolean :payment_required, null: false
       t.references :user, null: false, foreign_key: true, type: :uuid
       t.integer :price, null: false
-
+      t.string :color, default: "#000000"
       t.timestamps
     end
   end
