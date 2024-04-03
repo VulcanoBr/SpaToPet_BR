@@ -3,6 +3,6 @@ FactoryBot.define do
     name { "MyString" }
     breed { "MyString" }
     kind { 1 }
-    user { nil }
+    user
   end
 end

@@ -1,0 +1,17 @@
+pt-BR:
+  app_name: 'Spa para animais de estimação'
+  meta_title: 'Spa para animais de estimação - O melhor lugar para seu animal de estimação'
+  activerecord:
+    attributes:
+      user:
+        password: "Senha"
+        first_name: "Nome"
+        last_name: "Apelido"
+        email: "Email"
+        username: "Noome do usuário"
+        phone: "Telefone"
+    errors:
+      messages:
+        blank: "não pode ficar em branco"
+        too_short: "é muito curto (mínimo de %{count} caracteres)"
+        invalid: "invalido"

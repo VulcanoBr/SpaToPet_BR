@@ -4,12 +4,13 @@ class Authentication::SessionsController < ApplicationController
 
   def create
     @user = User.find_by("email = :login OR username = :login", { login: params[:login] })
-    if @user.authenticate(params[:password])
-      login @user
-      redirect_to root_path, notice: "Logged in successfully"
-    else
+    if @user.blank? || !@user.authenticate(params[:password])
       flash[:alert] = "Invalid login credentials"
       render :new, status: :unauthorized
+      
+    else
+      login @user
+      redirect_to root_path, notice: "Logged in successfully"
     end
   end
 

@@ -1,42 +1,53 @@
-<%= form_with(model: current_user) do |form| %>
-  <div data-controller="previews">
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar, direct_upload: true, data: { previews_target: "input", action: "change->previews#preview" } %>
-    <% if current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar, class: 'avatar-preview', data: { previews_target: "preview" } %>
-    <% else %>
-      <%= image_tag 'placeholder.jpg', class: 'avatar-preview', data: { previews_target: "preview" } %>
+<div class="w-2/6 lg:w-5/12 bg-white shadow-lg rounded-lg p-8 mx-auto my-7">
+  <h1 class="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-teal-500 text-transparent bg-clip-text">Edit</h1>
+  
+    <%= form_with(model: current_user) do |form| %>
+      
+      <div data-controller="previews" class="flex flex-col lg:flex-row items-center gap-5 mb-5">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar, class: 'avatar-preview w-full h-auto mt-2 mx-auto', data: { previews_target: "preview" } %>
+        <% else %>
+          <%= image_tag 'placeholder.jpg', class: 'avatar-preview', data: { previews_target: "preview" } %>
+        <% end %>
+
+        <div class="flex flex-col">
+          <%= form.label :avatar, 'Tu foto', class: 'text-blue-400 font-bold text-lg' %>
+          <%= form.file_field :avatar, direct_upload: true, data: { previews_target: "input", action: "change->previews#preview" }, class: 'flex flex-col'  %>
+        </div>
+      </div>
+
+      <div class="inputBox w-full mb-4">
+        <%= form.text_field :first_name, required: true, class: 'p-2' %>
+        <%= form.label :first_name, class: 'font-semibold' %>
+      </div>
+  
+      <div class="inputBox w-full mb-4">
+        <%= form.text_field :last_name, required: true, class: 'p-2' %>
+        <%= form.label :last_name, class: 'font-semibold' %>
+      </div>
+  
+      <div class="inputBox w-full mb-4">
+        <%= form.text_field :username, required: true, class: 'p-2' %>
+        <%= form.label :username, '@Username', class: 'font-semibold' %>
+      </div>
+
+      <div class="inputBox w-full mb-4">
+          <%= form.text_field :phone, required: true, class: 'p-2' %>
+          <%= form.label :phone, class: 'font-semibold' %>
+      </div>
+
+      <div class="inputBox w-full mb-4">
+        <%= form.email_field :email, required: true, class: 'p-2' %>
+        <%= form.label :email, class: 'font-semibold' %>
+      </div>
+
+      <div class="cursor-pointer mx-auto w-min bg-gradient-to-r from-blue-400 to-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-500 transition duration-300 font-bold text-2xl my-5">
+        <%= form.submit class: 'cursor-pointer' %>
+      </div>
     <% end %>
+    <div class="mx-auto w-max">
+      <%= link_to "Change Password", edit_password_path(current_user), class: 'text-blue-400 font-semibold' %>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div>
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= form.label :username %>
-    <%= form.text_field :username %>
-  </div>
-
-  <div>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<%= link_to "Change Password", edit_password_path(current_user) %>
+   
+</div>
