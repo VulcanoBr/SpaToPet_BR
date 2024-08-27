@@ -1,17 +1,16 @@
 <div id="<%= dom_id appointment_type %>">
   <%= link_to new_appointment_path(appointment_type: appointment_type.name, local_id: local.id), class: "p-6 border shadow-xl rounded-xl block hover:shadow-lg transition ease-in duration-300 relative overflow-hidden" do %>
-    <!-- <div class="h-1 w-full absolute top-0 left-0 right-0" style="background-color: <%= appointment_type.color %>"></div> -->
     <%= render(ColorDivComponent.new(appointment_type: appointment_type)) %>
     <h3 class="font-medium text-2xl"><%= appointment_type.name %></h3>
-    <p class="text-gray-500">View appointment page</p>
+    <p class="text-gray-500"><%= t('local_view_page') %></p>
 
     <% if appointment_type.payment_required? %>
       <div class="mt-3 pt-3 border-t">
         <p>
-          <strong>Payment required</strong>
+          <strong><%= AppointmentType.human_attribute_name(:payment_required) %></strong>
         </p>
         <p>
-          <strong>Price:</strong>
+          <strong><%= AppointmentType.human_attribute_name(:price) %>:</strong>
           <%= number_to_currency(appointment_type.price) %>
         </p>
       </div>

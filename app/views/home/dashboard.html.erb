@@ -1,8 +1,14 @@
 <div class="w-screen lg:w-9/12 mx-auto p-5 mt-3 rounded shadow-xl border">
-  <div class="px-6 py-10 rounded-t-xl bg-gray-50">
-    <h1 class="text-3xl font-extrabold text-center"><%= current_user.first_name %>'s Dashboard Page</h1>
-    <p class="text-center text-gray-600 mt-2">Book your prefered time slot using the appointment options below.</p>
+  <div class="flex justify-between items-center items-centerpx-6 py-10 rounded-t-xl bg-gray-50">
+    <div>
+    <h1 class="text-3xl font-extrabold text-center"><%= current_user.first_name %>'s <%= t('dashboard_client') %></h1>
+    <p class="text-center text-gray-600 mt-2"><%= t('description_client') %></p>
+    </div>
+    <div class="my-5 justify-end items-center w-1/5">
+      <%= link_to "Pet(s)", pets_path, class: "rounded-lg py-3 px-5 bg-blue-400 text-white block font-bold" %>
+    </div>
   </div>
+  
 
   <div class="flex overflow-x-scroll xl:overflow-x-hidden gap-2 my-4">
     <%= render(CityComponent.new) %>
@@ -16,17 +22,18 @@
     <% end %>
   </div>
   <div>
-    <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Check your last 5 appointments.</h3>
+    <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2"><%= t('dashboard_list')%></h3>
     <table class="w-full table">
       <thead>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_code') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('status') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('pet_name') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('breed') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('kind') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('starts') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('ends') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_type') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('paid') %></th>
       </thead>
       <tbody>
         <%= render @appointments %>

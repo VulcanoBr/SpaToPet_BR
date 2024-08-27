@@ -1,6 +1,6 @@
 pt-BR:
-  app_name: 'Spa para animais de estimação'
-  meta_title: 'Spa para animais de estimação - O melhor lugar para seu animal de estimação'
+  app_name: "Spa para animais de estimação"
+  meta_title: "O melhor lugar para seu animal de estimação"
   activerecord:
     attributes:
       user:
@@ -8,7 +8,7 @@ pt-BR:
         first_name: "Nome"
         last_name: "Apelido"
         email: "Email"
-        username: "Noome do usuário"
+        username: "Nome do usuário"
         phone: "Telefone"
     errors:
       messages:

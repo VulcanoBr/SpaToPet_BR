@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-screen sm:w-10/12 p-5 mt-8 mx-auto">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Appointments</h1>
   </div>
@@ -28,14 +28,15 @@
     <%== pagy_nav(@pagy) %>
     <table class="w-full table">
       <thead>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
-        <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_code') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('status') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('pet_name') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('breed') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('kind') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('starts') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('ends') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_type') %></th>
+        <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('paid') %></th>
       </thead>
       <tbody>
         <% @appointments.each do |appointment| %>

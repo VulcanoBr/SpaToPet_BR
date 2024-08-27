@@ -13,17 +13,49 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/payments", type: :request do
-  
+
+  let(:user) { User.create!(first_name: "John Doe", last_name: "Vulcan", username: "Vulcano",
+                  phone: "(21)98897-5959", email: "john@example.com", password: "123456", role: 0) }
+  let(:city) { City.create!(name: "Cidade dea Luz") }
+  let(:local) { Local.create!(city: city, address: "Endereço de terste") }
+  let(:appointment_type) { AppointmentType.create!(name: "Name test", payment_required: true, 
+      user: user, price: 123, color: "Azul") }
+  let(:pet)  { Pet.create!(name: "Nome Teste", breed: "breed", kind: 1, user: user) }  
+  let(:appointment) { Appointment.create!(status: 0, appointment_type: appointment_type, local: local,
+      pet: pet, client: user, start_at: Date.today, end_at: Date.today) }  
+  let(:appointment2) { Appointment.create!(status: 0, appointment_type: appointment_type, local: local,
+      pet: pet, client: user, start_at: Date.today, end_at: Date.today) }            
+  let(:current_user) { user }
+  let(:client_id) { user.id }
   # This should return the minimal set of attributes required to create a valid
   # Payment. As you add validations to Payment, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do  {
+      # billing_status: 0,
+      user_id: client_id,
+      appointment_id: appointment.id  
+    }
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do {
+    #  billing_status: nil,
+      user_id: nil,
+      appointment_id: nil
+    }
+  end
+
+  let(:new_attributes) do  {
+      #billing_status: 2,
+      user_id: client_id,
+      appointment_id: appointment2.id 
+    }
+  end
+
+  before(:each) do
+   # current_user = current_user
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
+
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -88,15 +120,12 @@ RSpec.describe "/payments", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested payment" do
         payment = Payment.create! valid_attributes
         patch payment_url(payment), params: { payment: new_attributes }
         payment.reload
-        skip("Add assertions for updated state")
+        expect(response).to have_http_status(302)
       end
 
       it "redirects to the payment" do

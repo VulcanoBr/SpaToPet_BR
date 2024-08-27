@@ -1,21 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe "appointment_types/index", type: :view do
+  let(:user) { User.create!(first_name: "John Doe", last_name: "Vulcan", username: "Vulcano",
+                  phone: "(21)98897-5959", email: "john@example.com", password: "123456") }
+
   before(:each) do
     assign(:appointment_types, [
       AppointmentType.create!(
-        payment_required: false,
         name: "Name",
-        user: nil,
-        price: 2,
-        description: nil
+        payment_required: true,
+        user: user,
+        price: 3,
+        description: "Meu teste Amarelo"
       ),
       AppointmentType.create!(
-        payment_required: false,
         name: "Name",
-        user: nil,
+        payment_required: true,
+        user: user,
         price: 2,
-        description: nil
+        description: "Meu teste Azul"
       )
     ])
   end
@@ -23,10 +26,11 @@ RSpec.describe "appointment_types/index", type: :view do
   it "renders a list of appointment_types" do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
+
+    assert_select cell_selector, text: Regexp.new("Payment Required:"), count: 2
+    assert_select cell_selector, text: Regexp.new("Name:"), count: 2
+    assert_select cell_selector, text: Regexp.new("User:"), count: 2
+    assert_select cell_selector, text: Regexp.new("Price:"), count: 2
+    assert_select cell_selector, text: Regexp.new("Description"), count: 2
   end
 end

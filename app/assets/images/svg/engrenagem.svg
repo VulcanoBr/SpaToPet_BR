@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="200" viewBox="0 0 500 200">
+  <!-- Definitions for the gear shape -->
+  <defs>
+    <path id="gear" d="M50,15 L60,15 L65,5 L75,5 L80,15 L90,15 L90,25 L100,30 L90,35 L90,45 L80,45 L75,55 L65,55 L60,45 L50,45 L50,35 L40,30 L50,25 L50,15 Z M50,30 A20,20 0 1,0 70,30 A20,20 0 1,0 50,30" />
+  </defs>
+
+  <!-- First gear -->
+  <use href="#gear" x="0" y="50" fill="#666" stroke="#333" stroke-width="3"/>
+  
+  <!-- Letter E -->
+  <text x="100" y="110" font-family="Arial" font-size="80" fill="#333">E</text>
+  
+  <!-- Second gear -->
+  <use href="#gear" x="150" y="50" fill="#666" stroke="#333" stroke-width="3"/>
+  
+  <!-- Letter R -->
+  <text x="250" y="110" font-family="Arial" font-size="80" fill="#333">R</text>
+  
+  <!-- Third gear -->
+  <use href="#gear" x="300" y="50" fill="#666" stroke="#333" stroke-width="3"/>
+</svg>

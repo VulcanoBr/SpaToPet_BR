@@ -1,12 +1,14 @@
 <div class="flex flex-col md:flex-row items-center justify-between px-6 py-12 bg-white">
   <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-    <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-teal-500 text-transparent bg-clip-text mb-4">¡Reserva baños, sesiones de spa y mucho mas para tus mascotas!</h1>
-    <p class="text-lg text-gray-700 my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-    <%= link_to 'Reservar', new_user_path, class: "rounded-lg py-3 px-5 bg-blue-400 text-white block font-bold my-5 w-min text-2xl" %>
+    <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-teal-500 text-transparent bg-clip-text mb-4"><%= t('welcome_title') %> </h1>
+    <p class="text-lg text-gray-700 my-4"><%= t('welcome_description') %></p>
+    <% if user_signed_in? %>
+      <%= link_to 'Reservar', dashboard_path, class: "rounded-lg py-3 px-5 bg-blue-400 text-white block font-bold my-5 w-min text-2xl" %>
+    <% else %>
+      <%= link_to 'Reservar', new_session_path, class: "rounded-lg py-3 px-5 bg-blue-400 text-white block font-bold my-5 w-min text-2xl" %>
+    <% end %>
   </div>
-
   <div class="md:w-1/2">
-    <%= image_tag('svg/dog.svg', alt: 'Mascota', class: 'w-full') %>
+    <%= image_tag('svg/bichos.svg', alt: 'Mascota', class: 'w-full') %>
   </div>
 </div>

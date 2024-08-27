@@ -1,14 +1,15 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: %i[ show edit update destroy ]
+
+  before_action :authenticate_user!
+  before_action :set_pet, only: %i[ show edit update destroy destroy_photo ]
 
   # GET /pets or /pets.json
   def index
-    @pets = Pet.all
+    @pets = current_user.pets.all
   end
 
   # GET /pets/1 or /pets/1.json
-  def show
-  end
+  def show; end;
 
   # GET /pets/new
   def new
@@ -16,8 +17,7 @@ class PetsController < ApplicationController
   end
 
   # GET /pets/1/edit
-  def edit
-  end
+  def edit; end;
 
   # POST /pets or /pets.json
   def create
@@ -57,11 +57,20 @@ class PetsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pet
-      @pet = Pet.find(params[:id])
+  def destroy_photo
+    @pet.photo.purge
+
+    respond_to do |format|
+      format.turbo_stream { render(turbo_stream: turbo_stream.remove(@pet)) }
     end
+  end
+
+  private
+
+    # Use callbacks to share common setup or constraints between actions.
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
     def pet_params

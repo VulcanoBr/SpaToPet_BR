@@ -1,4 +1,7 @@
 class PaymentsController < ApplicationController
+
+  before_action :authenticate_user!
+
   before_action :set_payment, only: %i[ show edit update destroy ]
 
   # GET /payments or /payments.json
@@ -17,6 +20,7 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
+
   end
 
   # POST /payments or /payments.json

@@ -1,5 +1,6 @@
 class Authentication::SessionsController < ApplicationController
   def new
+
   end
 
   def create
@@ -7,7 +8,7 @@ class Authentication::SessionsController < ApplicationController
     if @user.blank? || !@user.authenticate(params[:password])
       flash[:alert] = "Invalid login credentials"
       render :new, status: :unauthorized
-      
+
     else
       login @user
       redirect_to root_path, notice: "Logged in successfully"

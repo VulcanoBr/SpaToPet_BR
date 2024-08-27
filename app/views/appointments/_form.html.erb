@@ -1,7 +1,7 @@
 <%= form_with(model: appointment, class: "contents", data: {
-  controller: 'nested-form',
-  nested_form_wrapper_selector_value: '.nested-form-wrapper'
-}) do |form| %>
+    controller: 'nested-form',
+    nested_form_wrapper_selector_value: '.nested-form-wrapper'
+  }) do |form| %>
   <% if appointment.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
@@ -14,19 +14,23 @@
     </div>
   <% end %>
 
-  <h3 class="font-bold text-lg mb-3 mt-6">Personal details</h3>
+  <h3 class="font-bold text-lg mb-3 mt-6"><%= t('personal_details') %></h3>
 
   <p class="my-5  flex gap-5">
-    <strong class="block font-medium mb-1">Owner:</strong>
-    <%= current_user.first_name %>
+    <strong class="block font-medium mb-1"><%= Appointment.human_attribute_name(:client_id) %>:</strong>
+    <%= @current_user.first_name %>
   </p>
 
   <div class="my-5">
     <%= form.label :pet_id %>
-    <%= form.collection_select :pet_id, current_user.pets, :id, :name, { prompt: "Select Pet" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <% if @current_user.role == 'admin' %>
+      <%= form.collection_select :pet_id, Pet.all, :id, :name, { prompt: "Select Pet" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <% else %>
+      <%= form.collection_select :pet_id, @current_user.pets, :id, :name, { prompt: "Select Pet" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <% end %>
   </div>
 
-  <%= form.hidden_field :local_id, value: params[:local_id] %>
+  <%= form.hidden_field :local_id, value: @local %>
 
   <div class="mb-6">
     <%= form.label :notes %>
@@ -40,27 +44,28 @@
         <input type="hidden" name="appointment[appointment_type_id]" value="<%= @appointment_type.id %>">
         <div class="flex items-start">
           <div class="text-3xl font-bold mr-3"><%= @appointment_type.name %>
-            <!-- <div class="absolute top-3 right-3 w-3 h-3 rounded-full" style="background-color: <%= @appointment_type.color %>;"></div> -->
             <%= render(BadgedComponent.new(appointment_type: @appointment_type)) %>
           </div>
         </div>
       </div>
     </div>
   <% else %>
-    <%= @appointment.appointment_type.name %>
+    <strong> <%= @appointment.appointment_type.name %> </strong>
   <% end %>
 
   <div class="my-5">
     <%= form.label :start_at %>
-    <%= form.datetime_field :start_at, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.datetime_field :start_at, min: Date.today, html5: true,
+      class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :end_at %>
-    <%= form.datetime_field :end_at, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.datetime_field :end_at, min: Date.today.strftime("%d-%m-%Y"), 
+      class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <h3 class="font-bold text-lg mb-3">Payment details</h3>
+  <h3 class="font-bold text-lg mb-3"><%= t('payment_details') %> </h3>
 
   <%= form.fields_for :payments do |payment_fields| %>
     <%= render "appointments/appointment_payment_form", f: payment_fields %>

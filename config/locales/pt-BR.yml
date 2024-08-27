@@ -1,8 +1,89 @@
----
 pt-BR:
-  app_name: 'Spa para animais de estimação'
-  meta_title: 'Spa para animais de estimação - O melhor lugar para seu animal de estimação'
+  enum:
+    appointment:
+      status:
+        scheduled: Agendado
+        processing: Em andamento
+        finished: Finalizado
+    payment:
+      billing_status:
+        pending: Pendente
+        onapproval: Em aprovação
+        approved: Aprovado
+        unapproved: Não aprovado
+  app_name: Spa para animais de estimação
+  meta_title: O melhor lugar para seu animal de estimação
+  dashboard_admin: Painel de controle administrativo
+  welcome_title: Reserve banhos, sessões de spa e muito mais para seus animais de estimação!
+  welcome_description: Relaxamento e cuidados especiais para os melhores amigos de quatro patas. Bem-estar garantido com mimos exclusivos.
+  description_admin: Aqui você pode gerenciar todas as reservas que foram criadas.
+  scheduled_appointment: Compromissos agendados
+  process_appointment: Compromissos em andamento
+  finish_appointment: Compromissos finalizados
+  description_client: Reserve o horário de sua preferência usando as opções de agendamento abaixo.
+  dashboard_client: Página do Painel
+  dashboard_local: Local localizado na cidade de
+  dashboard_list: Verifique seus últimos 5 agendamentos.
+  local_show: Escolha o tipo de agendamento, conforme suas preferências
+  local_view_page: Ver página de agendamento
+  personal_details: Detalhes pessoais
+  payment_details: Detalhes de pagamento
+  deposit_account: Depositar na seguinte conta
+  deposit_qrcode: Transferência para conta, via QR Code
+  approval_payment: Aprovar pagamento
+  appointment_code: CÓDIGO do AGENDAMENTO
+  appointment_profile: Estes são todos os seus agendamentos
+  forgot_password: Esqueceu sua senha
+  hello: Oi
+  status: STATUS
+  pet_name: NOME ANIMAL ESTIMAÇÃO
+  breed: RAÇA
+  kind: TIPO
+  starts: INICIA
+  ends: FINALIZA
+  appointment_type: SERVIÇO
+  paid: PAGAMENTO
+  scheduled: Agendado
   activerecord:
+    attributes:
+      appointment:
+        appointment_code: Codigo do Agendamento
+        status: Status
+        appointment_type_id: Tipo de Agendamento
+        local_id: Cidade
+        pet_id: Animal de Estimação
+        client_id: Cliente
+        start_at: Começa em
+        end_at: Finaliza em
+      appointment_type:
+        name: Nome
+        payment_required: Pagamento Requerido
+        user_id: Usuário
+        price: Preço
+        color: Cor
+      user:
+        password: Senha
+        first_name: Nome
+        last_name: Apelido
+        email: Email
+        username: Nome do usuário
+        phone: Telefone
+      city:
+        name: Cidade
+      local:
+        city_id: Cidade
+        address: Endereço
+      payment:
+        billing_status: Status de Faturamento
+        user_id: Usuário
+        appointment_id: Agendamento
+        receipt: Comprovante de pagamento
+      pet:
+        name: Nome
+        breed: Raça
+        kind: Tipo
+        user_id: Usuário
+        important_data: Dados Importantes
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
@@ -223,36 +304,4 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
-  faker:
-    address:
-      street_address: "{{street_name}} {{building_number}}"
-      community: ""
-      full_address:
-        - "Rua das Flores, 123 - Bairro Jardim Primavera - Cidade Nova - Estado A - CEP: 12345-678"
-        - "Avenida dos Bandeirantes, 456 - Bairro Centro - Cidade Grande - Estado B - CEP: 23456-789"
-        - "Praça da Liberdade, 789 - Bairro Liberdade - Cidade Velha - Estado C - CEP: 34567-890"
-        - "Rua do Comércio, 321 - Bairro Comercial - Cidade Antiga - Estado D - CEP: 45678-901"
-        - "Avenida Paulista, 654 - Bairro Bela Vista - Cidade Metrópole - Estado E - CEP: 56789-012"
-        - "Travessa das Oliveiras, 987 - Bairro Oliveira - Cidade Nova - Estado F - CEP: 67890-123"
-        - "Rua das Pedras, 234 - Bairro Pedregulho - Cidade Velha - Estado G - CEP: 78901-234"
-        - "Alameda dos Ipês, 567 - Bairro Floricultura - Cidade Nova - Estado H - CEP: 89012-345"
-        - "Praça dos Esportes, 890 - Bairro Esportivo - Cidade Grande - Estado I - CEP: 90123-456"
-        - "Avenida da Saudade, 345 - Bairro Saudade - Cidade Pequena - Estado J - CEP: 01234-567"
-        - "Rua das Acácias, 678 - Bairro Acácias - Cidade Nova - Estado K - CEP: 12345-678"
-        - "Estrada do Sol, 901 - Bairro Sol Nascente - Cidade Velha - Estado L - CEP: 23456-789"
-        - "Viela das Rosas, 234 - Bairro Rosa - Cidade Nova - Estado M - CEP: 34567-890"
-        - "Travessa das Violetas, 567 - Bairro Violeta - Cidade Grande - Estado N - CEP: 45678-901"
-        - "Alameda dos Girassóis, 890 - Bairro Girassol - Cidade Velha - Estado O - CEP: 56789-012"
-    vehicle: 
-     # car_options: ""
-      models_by_make: ""
-      makes: ""
-    customer:
-      name:
-        first_name: ""
-    name:
-      first_name: ""
-    provider:
-      name: ""
-    company:
-    #  industry: "Industria do Bem" 
+  

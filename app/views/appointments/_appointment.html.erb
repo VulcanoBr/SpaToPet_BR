@@ -1,10 +1,29 @@
 <tr id="<%= dom_id appointment %>">
-  <td data-label="Status" class="border border-slate-300 bg-white text-left p-4"><%= appointment.status %></td>
+  <td data-label="Appointment Code" class="border border-slate-300 bg-white text-left p-4"><%= appointment.appointment_code %></td>
+  <td data-label="Status" class="border border-slate-300 bg-white text-left p-4"><%= t("enum.appointment.status.#{appointment.status}") %></td>
   <td data-label="Pet Name" class="border border-slate-300 bg-white text-left p-4"><%= appointment.pet&.name %></td>
   <td data-label="Breed" class="border border-slate-300 bg-white text-left p-4"><%= appointment.pet&.breed %></td>
   <td data-label="Kind" class="border border-slate-300 bg-white text-left p-4"><%= appointment.pet&.kind %></td>
   <td data-label="Starts" class="border border-slate-300 bg-white text-left p-4"><%= appointment.start_at.strftime('%b %e, %Y at %l:%M %p') %></td>
   <td data-label="Ends" class="border border-slate-300 bg-white text-left p-4"><%= appointment.end_at.strftime('%b %e, %Y at %l:%M %p') %></td>
   <td data-label="Appointment Type" class="border border-slate-300 bg-white text-left p-4"><%= appointment.appointment_type.name %></td>
-  <td data-label="Paid" class="border border-slate-300 bg-white text-left p-4"><%= appointment.payments&.any? ? appointment.payments&.first.billing_status : "No required" %></td>
+
+    <% if appointment.payments&.any? %>
+      <% if appointment.payments&.first.billing_status == "pending" ||  
+            appointment.payments&.first.billing_status == "unapproved" %>
+        <td data-label="Paid" style="background-color: rgba(255, 0, 0, 0.5);" class="border border-slate-500 bg-red-900 text-left p-4">
+        <%= link_to edit_appointment_path(appointment, local_id: appointment.local_id) do %>
+          <%= t("enum.payment.billing_status.#{appointment.payments&.first.billing_status}") %>
+        <% end %>
+      <% else %>
+        <td data-label="Paid" class="border border-slate-500 bg-white text-left p-4">
+          <%= t("enum.payment.billing_status.#{appointment.payments&.first.billing_status}") %>
+      <% end %>
+    <% else %>
+      <%= "No required" %>
+    <% end %>
+  </td>
 </tr>
+<div>
+  <%= hidden_field_tag :local_id, value: appointment.local_id %>
+</div>

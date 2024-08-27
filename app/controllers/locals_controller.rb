@@ -10,6 +10,7 @@ class LocalsController < ApplicationController
 
   # GET /locals/1 or /locals/1.json
   def show
+    @current_user = current_user
     @appointment_types = AppointmentType.order(name: :asc)
   end
 

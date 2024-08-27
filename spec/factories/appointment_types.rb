@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :appointment_type do
-    payment_required { false }
     name { "MyString" }
-    user { nil }
+    payment_required { false }
+    user
     price { 1 }
-    description { nil }
+    color { "Azul" }
   end
 end

@@ -14,16 +14,36 @@ require 'rails_helper'
 
 RSpec.describe "/locals", type: :request do
   
+  let(:user) { User.create!(first_name: "John Doe", last_name: "Vulcan", username: "Vulcano",
+                  phone: "(21)98897-5959", email: "john@example.com", password: "123456", role: 2) }
+  let(:city) { City.create!(name: "Cidade dea Luz") }
+  #let(:local) { Local.create!(city: city, address: "Endereço de terste") }
+  let(:current_user) { user }
   # This should return the minimal set of attributes required to create a valid
   # Local. As you add validations to Local, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do {
+      city_id: city.id,
+      address: "Meu endereço"
+    }
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do {
+      city: " ",
+      address: nil
+    }
+  end
+
+  let(:new_attributes) do {
+      city_id: city.id,
+      address: "Novo Endereço"
+    }
+  end
+
+  before do
+    # Simular login do usuário
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -44,7 +64,7 @@ RSpec.describe "/locals", type: :request do
   describe "GET /new" do
     it "renders a successful response" do
       get new_local_url
-      expect(response).to be_successful
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -88,15 +108,12 @@ RSpec.describe "/locals", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
+      
       it "updates the requested local" do
         local = Local.create! valid_attributes
         patch local_url(local), params: { local: new_attributes }
         local.reload
-        skip("Add assertions for updated state")
+        expect(response).to have_http_status(302)
       end
 
       it "redirects to the local" do

@@ -1,6 +1,7 @@
 class CreateAppointments < ActiveRecord::Migration[7.1]
   def change
     create_table :appointments, id: :uuid do |t|
+      t.string :appointment_code
       t.integer :status, default: 0
       t.references :appointment_type, null: false, foreign_key: true, type: :uuid
       t.references :local, foreign_key: true, type: :uuid

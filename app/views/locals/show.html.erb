@@ -21,7 +21,7 @@
   </div>
 
   <div class="w-full md:w-2/3 h-full ml-10 mt-10">
-    <h2 class="text-2xl font-bold text-blue-400">Choose the type of appointment for your preferences:</h2>
+    <h2 class="text-2xl font-bold text-blue-400"><%= t('local_show') %>:</h2>
   
     <div class="grid grid-cols-3 gap-6 px-8 pt-8">
       <% @appointment_types.each do |appointment_type| %>
@@ -29,7 +29,7 @@
       <% end %>
     </div>
   
-    <% if current_user.admin?%>
+    <% if @current_user.admin?%>
       <div class="flex gap-6 ml-2 mt-8">
         <%= link_to "Edit this local", edit_local_path(@local), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
         <%= button_to "Destroy this local", local_path(@local), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>

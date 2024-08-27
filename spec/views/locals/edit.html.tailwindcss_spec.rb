@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "locals/edit", type: :view do
+  let(:city) {City.create!(name: "Cidade do Sol")}
   let(:local) {
     Local.create!(
-      city: nil,
+      city: city,
       address: "MyText"
     )
   }
@@ -17,7 +18,7 @@ RSpec.describe "locals/edit", type: :view do
 
     assert_select "form[action=?][method=?]", local_path(local), "post" do
 
-      assert_select "input[name=?]", "local[city_id]"
+      assert_select "select[name=?]", "local[city_id]"
 
       assert_select "textarea[name=?]", "local[address]"
     end

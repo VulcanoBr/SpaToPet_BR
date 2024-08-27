@@ -9,27 +9,27 @@
   </div>
 
   <p class="my-5  flex gap-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1"><%= Pet.human_attribute_name(:name) %>:</strong>
     <%= pet.name %>
   </p>
 
   <p class="my-5  flex gap-5">
-    <strong class="block font-medium mb-1">Breed:</strong>
+    <strong class="block font-medium mb-1"><%= Pet.human_attribute_name(:breed) %>:</strong>
     <%= pet.breed %>
   </p>
 
   <p class="my-5  flex gap-5">
-    <strong class="block font-medium mb-1">Kind:</strong>
+    <strong class="block font-medium mb-1"><%= Pet.human_attribute_name(:kind) %>:</strong>
     <%= pet.kind %>
   </p>
 
   <p class="my-5 flex gap-5">
-    <strong class="block font-medium mb-1">Owner:</strong>
+    <strong class="block font-medium mb-1"><%= Pet.human_attribute_name(:user_id) %>:</strong>
     <%= pet.user.first_name %>
   </p>
 
   <p class="my-5 flex gap-5">
-    <strong class="block font-medium mb-1">Important data:</strong>
+    <strong class="block font-medium mb-1"><%= Pet.human_attribute_name(:important_data) %>:</strong>
     <%= pet.important_data.body.to_plain_text %>
   </p>
 

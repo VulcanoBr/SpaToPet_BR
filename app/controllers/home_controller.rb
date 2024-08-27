@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   before_action :authenticate_user!, only: [:dashboard, :dashboard_admin]
   before_action :authorize!, only: [:dashboard_admin]
 

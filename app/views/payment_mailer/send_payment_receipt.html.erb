@@ -1,0 +1,12 @@
+<h2>Um pagamento foi realizado</h2>
+
+<h4>Cliente:</h4>
+<p> <%= @current_user.first_name %> </p>
+
+<h4>Agendamento:</h4>
+<p><%= @appointment.appointment_code %></p>
+
+<h4>Datas:</h4>
+<p><%= "#{@appointment.start_at.strftime("%d/%m/%Y %H:%M:%S")} - #{@appointment.end_at.strftime("%d/%m/%Y %H:%M:%S")}" %></p>
+
+

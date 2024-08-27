@@ -13,17 +13,30 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/cities", type: :request do
-  
+  let(:user) { User.create!(first_name: "John Doe", last_name: "Vulcan", username: "Vulcano",
+                  phone: "(21)98897-5959", email: "john@example.com", password: "123456", role: 2) }
   # This should return the minimal set of attributes required to create a valid
   # City. As you add validations to City, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do {
+      name: "Minha cidade"
+    }
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do {
+      name: nil
+    }
+  end
+
+  let(:new_attributes) do {
+      name: "Minha cidade alterada"
+    }
+  end
+
+  before do
+    # Simular login do usuário
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -44,7 +57,7 @@ RSpec.describe "/cities", type: :request do
   describe "GET /new" do
     it "renders a successful response" do
       get new_city_url
-      expect(response).to be_successful
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -88,15 +101,12 @@ RSpec.describe "/cities", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested city" do
         city = City.create! valid_attributes
         patch city_url(city), params: { city: new_attributes }
         city.reload
-        skip("Add assertions for updated state")
+        expect(response).to have_http_status(302)
       end
 
       it "redirects to the city" do

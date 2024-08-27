@@ -17,13 +17,42 @@ RSpec.describe "/appointment_types", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # AppointmentType. As you add validations to AppointmentType, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:user) { User.create!(first_name: "John Doe", last_name: "Vulcan", username: "Vulcano",
+                    phone: "(21)98897-5959", email: "john@example.com", password: "123456", role: 2) }
+  let(:current_user) { user }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) do {
+      name: "Name",
+      payment_required: false,
+      user: user,
+      price: 3,
+      description: "Meu teste Amarelo"
+    }
+  end
+
+  let(:invalid_attributes) do {
+      name: nil,
+      payment_required: nil,
+      user: nil,
+      price: nil,
+      description: nil
+    }
+  end
+
+  let(:new_attributes) do {
+      name: "Name novo",
+      payment_required: false,
+      user: user,
+      price: 33,
+      description: "Meu teste Amarelo novo"
+    }
+  end
+
+  before do
+    # Simular login do usuário
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+    #@appointment_type = appointment_type
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -44,7 +73,7 @@ RSpec.describe "/appointment_types", type: :request do
   describe "GET /new" do
     it "renders a successful response" do
       get new_appointment_type_url
-      expect(response).to be_successful
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -88,15 +117,12 @@ RSpec.describe "/appointment_types", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested appointment_type" do
         appointment_type = AppointmentType.create! valid_attributes
         patch appointment_type_url(appointment_type), params: { appointment_type: new_attributes }
         appointment_type.reload
-        skip("Add assertions for updated state")
+        expect(response).to have_http_status(302)
       end
 
       it "redirects to the appointment_type" do

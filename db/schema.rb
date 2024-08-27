@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_162051) do
   end
 
   create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "appointment_code"
     t.integer "status", default: 0
     t.uuid "appointment_type_id", null: false
     t.uuid "local_id"

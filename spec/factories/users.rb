@@ -4,7 +4,8 @@ FactoryBot.define do
     last_name { "MyString" }
     username { "MyString" }
     phone { "MyString" }
-    email { "MyString" }
-    password_digest { "MyString" }
+    email { "vulcan@example.com" }
+    password { "123456" }
+    role { 2 }
   end
 end

@@ -1,12 +1,21 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto md:w-2/3 w-full flex mt-8">
   <div class="mx-auto">
 
     <%= render @appointment %>
 
-    <%= link_to "Edit this appointment", edit_appointment_path(@appointment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this appointment", appointment_path(@appointment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to "Back to appointments", appointments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this appointment", edit_appointment_path(@appointment, 
+        local_id: @appointment.local_id), 
+        class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if @current_user.client? %>  
+      <div class="inline-block ml-2">
+        <%= button_to "Destroy this appointment", profile_path(@appointment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+      <%= link_to "Back to appointments", profile_path(@current_user.id), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% else %>
+      <div class="inline-block ml-2">
+        <%= button_to "Destroy this appointment", appointment_path(@appointment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+      <%= link_to "Back to appointments", appointments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
   </div>
 </div>

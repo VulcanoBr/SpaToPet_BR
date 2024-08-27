@@ -15,6 +15,12 @@ user2 = User.create!(
   phone: '1234567779', password: '123456', role: 0
 )
 
+user3 = User.create!(
+  first_name: "Tester3", last_name: "Testino3 potencial3",
+  username: 'tester3', email: 'tester3@test.com',
+  phone: '12345677793', password: '123456', role: 1
+)
+
 pet1 = Pet.create!(
   name: "Firulais", breed: "Poodle",
   important_data: "Muerde a veces", user: user2,
@@ -59,6 +65,7 @@ appointment_type3 = AppointmentType.create!(
 
 15.times do |t|
   appointment = Appointment.create!(
+    appointment_code: DateTime.now.strftime("%Y%m%d%H%M%S") + rand(0..9).to_s,
     start_at: DateTime.now + t.day,
     end_at: DateTime.now + t.day + 1.hour,
     pet: pet1, client: user2,
@@ -67,13 +74,14 @@ appointment_type3 = AppointmentType.create!(
   )
   payment = Payment.create!(
     appointment: appointment,
-    user: user2 
+    user: user2
   )
   payment.receipt.attach(io: URI.open(Faker::LoremFlickr.image), filename: 'receipt_image.jpg')
 end
 
 20.times do |t|
   appointment = Appointment.create!(
+    appointment_code: DateTime.now.strftime("%Y%m%d%H%M%S") + rand(0..9).to_s,
     start_at: DateTime.now + t.day,
     end_at: DateTime.now + t.day + 1.hour,
     pet: pet1, client: user2,
@@ -82,13 +90,14 @@ end
   )
   payment = Payment.create!(
     appointment: appointment,
-    user: user2 
+    user: user2
   )
   payment.receipt.attach(io: URI.open(Faker::LoremFlickr.image), filename: 'receipt_image.jpg')
 end
 
 25.times do |t|
   appointment = Appointment.create!(
+    appointment_code: DateTime.now.strftime("%Y%m%d%H%M%S") + rand(0..9).to_s,
     start_at: DateTime.now + t.day,
     end_at: DateTime.now + t.day + 1.hour,
     pet: pet1, client: user2,
@@ -97,7 +106,7 @@ end
   )
   payment = Payment.create!(
     appointment: appointment,
-    user: user2 
+    user: user2
   )
   payment.receipt.attach(io: URI.open(Faker::LoremFlickr.image), filename: 'receipt_image.jpg')
 end

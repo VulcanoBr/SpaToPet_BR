@@ -1,8 +1,65 @@
 es:
-  app_name: 'Mascotitas Spa'
-  meta_title: 'Mascotitas Spa - El mejor lugar para tu mascota'
+  enum:
+    appointment:
+      status:
+        scheduled: Programada
+        processing: Procesando
+        finished: Finalizado
+    payment:
+      billing_status:
+        pending: Pendiente
+        onapproval: A prueba
+        approved: Aprobado
+        unapproved: No aprobado
+  app_name: "Mascotitas Spa"
+  meta_title: "El mejor lugar para tu mascota"
+  dashboard_admin: Administrador del panel
+  welcome_title: ¡Reserva baños, sesiones de spa y mucho mas para tus mascotas!
+  welcome_description: Relajación y cuidados especiales para nuestros mejores amigos de cuatro patas. Bienestar garantizado con mimos exclusivos.
+  description_admin: Aquí puedes gestionar todas las reservas que se crearon.
+  scheduled_appointment: Citas programadas
+  process_appointment: Procesar citas
+  finish_appointment: Citas terminadas
+  description_client: Reserve su horario preferido utilizando las opciones de cita a continuación.
+  dashboard_client: Página del Panel
+  dashboard_local: Local ubicado en la ciudad de
+  dashboard_list: Consulta tus últimas 5 citas.
+  local_show: Eligiendo el tipo de cita según tus preferencias
+  local_view_page: Ver página de citas
+  personal_details: Detalles personales
+  payment_details: Detalles del pago
+  deposit_account: Depositar en la siguiente cuenta
+  deposit_qrcode: Transferencia a la siguiente cuenta, yape o plin
+  approval_payment: Aprobar el pago
+  appointment_code: CÓDIGO CITA
+  appointment_profile: Estas son todas sus citas
+  forgot_password: Olvidaste tu contraseña
+  hello: Hola
+  status: ESTADO
+  pet_name: NOMBRE MASCOTA
+  breed: CARRERA
+  kind: AMABLE
+  starts: EMPIEZA
+  ends: TERMINA
+  appointment_type: SERVICIO
+  paid: PAGO
   activerecord:
     attributes:
+      appointment:
+        appointment_code: Código de cita
+        status: Estado
+        appointment_type_id: Tipo de cita
+        local_id: Ciudad
+        pet_id: Mascota
+        client_id: Cliente
+        start_at: Emoieza en
+        end_at: Termina en
+      appointment_type:
+        name: Nombre
+        payment_required: Pago Requerido
+        user_id: Usuario
+        price: Precio
+        color: Color
       user:
         password: "Contraseña"
         first_name: "Nombre"
@@ -10,6 +67,22 @@ es:
         email: "Correo electrónico"
         username: "Nombre de usuario"
         phone: "Teléfono"
+      city:
+        name: Ciudad
+      local:
+        city_id: Ciudad
+        address: Dirección
+      payment:
+        billing_status: Estado de Facturación
+        user_id: Usuário
+        appointment_id: Cita
+        receipt: Recibo de pago
+      pet:
+        name: Nombre
+        breed: Carrera
+        kind: Amable
+        user_id: User
+        important_data: Dados Importantes
     errors:
       messages:
         blank: "no puede estar en blanco"

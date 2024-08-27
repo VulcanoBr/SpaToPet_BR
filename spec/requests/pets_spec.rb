@@ -17,13 +17,42 @@ RSpec.describe "/pets", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Pet. As you add validations to Pet, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:user) { User.create!(first_name: "John Doe", last_name: "Vulcan", username: "Vulcano",
+                phone: "(21)98897-5959", email: "john@example.com", password: "123456", role: 0)}
+  let(:current_user) { user }
+  let(:valid_attributes) do
+    {
+      name: "Nome Teste",
+      breed: "Raça Teste",
+      kind: 1,
+      user: user,
+      important_data: "Meu teste"
+    }
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    {
+      name: nil,
+      breed: nil,
+      kind: nil,
+      user: user,
+      important_data: nil
+    }
+  end
+  let(:new_attributes) do
+    {
+      name: "Meu nome",
+      breed: "Raça Forte",
+      kind: "1",
+      user: user,
+      important_data: "Teste do teste"
+    }
+  end
+
+  before(:each) do
+    current_user = current_user
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -88,15 +117,13 @@ RSpec.describe "/pets", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested pet" do
         pet = Pet.create! valid_attributes
         patch pet_url(pet), params: { pet: new_attributes }
         pet.reload
-        skip("Add assertions for updated state")
+        #skip("Add assertions for updated state")
+        expect(response).to have_http_status(302)
       end
 
       it "redirects to the pet" do
@@ -120,7 +147,7 @@ RSpec.describe "/pets", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested pet" do
-      pet = Pet.create! valid_attributes
+      pet = Pet.create! valid_attributes 
       expect {
         delete pet_url(pet)
       }.to change(Pet, :count).by(-1)

@@ -303,6 +303,8 @@ GEM
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -353,10 +355,11 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   view_component (~> 3.11)
+  warden
   web-console
 
 RUBY VERSION
    ruby 3.3.0p0
 
 BUNDLED WITH
-   2.5.5
+   2.5.10

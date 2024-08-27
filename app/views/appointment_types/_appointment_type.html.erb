@@ -1,25 +1,25 @@
 <div id="<%= dom_id appointment_type %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Payment required:</strong>
+  <p class="my-5 flex gap-5">
+    <strong class="block font-medium mb-1"><%= AppointmentType.human_attribute_name(:payment_required) %>:</strong>
     <%= appointment_type.payment_required %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+  <p class="my-5 flex gap-5">
+    <strong class="block font-medium mb-1"><%= AppointmentType.human_attribute_name(:name) %>:</strong>
     <%= appointment_type.name %>
   </p>
 
-  <p class="my-5 flex justify-start items-center gap-3">
-    <strong class="block font-medium mb-1">User:</strong>
+  <p class="my-5 flex gap-5">
+    <strong class="block font-medium mb-1"><%= AppointmentType.human_attribute_name(:user_id) %>:</strong>
     <%= appointment_type.user.first_name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= appointment_type.price %>
+  <p class="my-5 flex gap-5">
+    <strong class="block font-medium mb-1"><%= AppointmentType.human_attribute_name(:price) %>:</strong>
+    <%= number_to_currency(appointment_type.price) %>
   </p>
 
-  <p class="my-5">
+  <p class="my-5 flex gap-5">
     <strong class="block font-medium mb-1">Description:</strong>
     <%= appointment_type.description %>
   </p>

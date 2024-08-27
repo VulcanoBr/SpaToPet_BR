@@ -8,19 +8,44 @@ Rails.application.routes.draw do
     patch '/password_resets', to: 'password_resets#update'
   end
 
-  resources :pets
+  resources :pets do
+    member do
+      delete :destroy_photo
+    end
+  end
   resources :locals
   resources :cities
   resources :appointment_types
-  resources :appointments
+
+  resources :appointments do
+    get 'approval_payment', to: 'appointments#approval_payment'
+
+    post 'payment_approved', on: :member
+    get 'payment_approved', on: :member
+    post 'payment_unapproved', on: :member
+    get 'payment_unapproved', on: :member
+    #post '/payment_approved', to: 'appointments#payment_approved'
+    #post 'approval_payment', to: 'appointments#payment_approved'
+    #get '/payment_approval', to: 'appointments#payment_approved'
+    #get '/payment_approved', to: 'appointments#payment_approved'
+    #get '/payment_unapproved', to: 'appointments#payment_unapproved'
+    #post '/appointments/:appointment_id/payment_approved', to: 'appointments#payment_approved', as: 'payment_approved_appointment'
+
+  end
   resources :payments
 
+  get 'approval_appointment', to: 'appointments#approval_appointment'
+
   get "/profile/:id", to: "users#show", as: "profile"
+  delete "/profile/:id", to: "users#destroy"
 
   get '/dashboard', to: 'home#dashboard', as: 'dashboard'
   get '/dashboard_admin', to: 'home#dashboard_admin', as: 'dashboard_admin'
   get '/welcome', to: 'home#welcome', as: 'welcome'
   root to: 'home#rooting'
+
+  post '/set_locale/:locale', to: 'application#set_locale', as: :set_locale
+  get '/set_locale/:locale', to: 'application#set_locale'
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

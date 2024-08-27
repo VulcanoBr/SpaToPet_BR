@@ -9,7 +9,8 @@ RSpec.describe "pets/show", type: :view do
       name: "Name",
       breed: "Breed",
       kind: 2,
-      user: user
+      user: user,
+      important_data: "Teste para funcionamento"
     ))
   end
 

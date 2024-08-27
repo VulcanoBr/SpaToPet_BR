@@ -6,7 +6,7 @@
       <%= image_tag 'placeholder.jpg', class: 'w-full h-80 rounded-lg' %>
     <% end %>
     <p class="my-5 flex flex-col items-start justify-center">
-      <strong>Local ubicado en la ciudad de: </strong>
+      <strong><%= t('dashboard_local') %>: </strong>
       <%= local_obj.city.name %>
     </p>
   <% end %>

@@ -4,5 +4,10 @@
   <%= render "form", appointment: @appointment %>
 
   <%= link_to "Show this appointment", @appointment, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to appointments", appointments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  
+  <% if @current_user.client? %>
+    <%= link_to "Back to appointments", profile_path(@current_user.id), class: "mb-4 ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% else %>
+    <%= link_to "Back to appointments", appointments_path, class: "mb-4 ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
 </div>

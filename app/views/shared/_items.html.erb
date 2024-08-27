@@ -1,10 +1,24 @@
-<% if user_signed_in? %>
-  <%= link_to 'Edit', edit_user_path(current_user), class: "mx-2 text-white hover:text-gray-200 font-bold text-xl" %>
-  <%= link_to 'Log out', session_path(current_user), class: "mx-2 text-white hover:text-gray-200 font-bold text-xl", method: :delete, data: {
-    turbo_method: :delete,
-    turbo_confirm: 'Are you sure?'
-  } %>
-<% else %>
-  <%= link_to 'Log in', new_session_path, class: "mx-2 text-white hover:text-gray-200 font-bold text-xl" %>
-  <%= link_to 'Sign up', new_user_path, class: "mx-2 bg-white text-blue-500 px-4 py-2 rounded-full hover:bg-blue-400 hover:text-white transition duration-300 font-bold" %>
-<% end %>
+  
+  <%= link_to set_locale_path(locale: 'en'), method: :post, class: "inline-block mr-3" do %>
+      <%= image_tag("svg/uk-flag.svg", title: "English", alt: "English", class: 'w-5') %>
+    <% end %>
+
+    <%= link_to set_locale_path(locale: 'pt-BR'), method: :post, class: "inline-block mr-3" do %>
+      <%= image_tag("svg/brazil-flag.svg", title: "Portuguese", alt: "Português", class: "w-5") %>
+    <% end %>
+
+    <%= link_to set_locale_path(locale: 'es'), method: :post, class: "inline-block mr-3" do %>
+      <%= image_tag("svg/spain-flag.svg", title: "Spanish", alt: "Español", class: "w-5") %>
+    <% end %>
+
+  <% if user_signed_in? %>
+    
+    <%= link_to 'Edit', edit_user_path(current_user.id), class: "mx-2 text-white hover:text-gray-200 font-bold text-xl" %>
+    <%= link_to 'Log out', session_path(current_user), class: "mx-2 text-white hover:text-gray-200 font-bold text-xl", method: :delete, data: {
+      turbo_method: :delete,
+      turbo_confirm: 'Are you sure?'
+    } %>
+  <% else %>
+    <%= link_to 'Log in', new_session_path, class: "mx-2 text-white hover:text-gray-200 font-bold text-xl" %>
+    <%= link_to 'Sign up', new_user_path, class: "mx-2 bg-white text-blue-500 px-4 py-2 rounded-full hover:bg-blue-400 hover:text-white transition duration-300 font-bold" %>
+  <% end %>

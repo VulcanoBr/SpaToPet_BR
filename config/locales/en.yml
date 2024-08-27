@@ -1,8 +1,66 @@
 en:
-  app_name: 'Pets Spa'
-  meta_title: 'Pets Spa - The best place for your pet'
+  enum:
+    appointment:
+      status:
+        scheduled: Sheduled
+        processing: Processing
+        finished: Finished
+    payment:
+      billing_status:
+        pending: Pending
+        onapproval: Onapproval
+        approved: Approved
+        unapproved: Unapproved
+  app_name: "Pets Spa"
+  meta_title: " The best place for your pet"
+  welcome_title: Book baths, spa sessions and much more for your pets!
+  welcome_description: Relaxation and special care for our four-legged best friends. Well-being guaranteed with exclusive pampering.
+  dashboard_admin: Dashboard Admin
+  description_admin: Here you can manage all the bookings that were created.
+  scheduled_appointment: Scheduled appointments
+  process_appointment: Processing appointments
+  finish_appointment: Finished appointments
+  description_client: Book your prefered time slot using the appointment options below.
+  dashboard_client: Dashboard Page
+  dashboard_local: Location located in the city of
+  dashboard_list: Check your last 5 appointments.
+  local_show: Choose the type of appointment for your preferences
+  local_view_page: view appointment page
+  personal_details: Personal details
+  payment_details: Payment details
+  deposit_account: Deposit in the following account
+  deposit_qrcode: Transfer to the next account, yape or plin
+  approval_payment: Payment approved
+  appointment_code: APPOINTMENT CODE
+  appointment_profile: These are all your appointments
+  forgot_password: Forgot your password
+  hello: Hello
+  status: STATUS
+  pet_name: PET NAME
+  breed: BREED
+  kind: KIND
+  starts: STARTS
+  ends: ENDS
+  appointment_type: APPOINTMENT TYPE
+  paid: PAID
+  
   activerecord:
     attributes:
+      appointment:
+        appointment_code: Appointment Code
+        status: Status
+        appointment_type_id: Appointment Type
+        local_id: City
+        pet_id: Pet
+        client_id: Client
+        start_at: Start at
+        end_at: End at
+      appointment_type:
+        name: Name
+        payment_required: Payment Required
+        user_id: User
+        price: Price
+        color: Color
       user:
         password: "Password"
         first_name: "First Name"
@@ -10,6 +68,22 @@ en:
         email: "Email"
         username: "Username"
         phone: "Phone"
+      city:
+        name: City
+      local:
+        city_id: City
+        address: Address
+      payment:
+        billing_status: Billing Status
+        user_id: User
+        appointment_id: Appointment
+        receipt: Payment receipt
+      pet:
+        name: Name
+        breed: Breed
+        kind: Kind
+        user_id: User
+        important_data: Important Data
     errors:
       messages:
         blank: "Can't be blank"

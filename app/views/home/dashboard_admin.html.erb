@@ -1,7 +1,8 @@
-<div class="w-screen lg:w-9/12 mx-auto p-5 mt-3 rounded shadow-xl border">
+<div class="w-full lg:w-10/12 mx-auto p-5 mt-3 rounded shadow-xl border">
+ 
   <div class="px-6 py-10 rounded-t-xl bg-gray-50">
-    <h1 class="text-3xl font-extrabold text-center"><%= current_user.first_name %>'s Dashboard Admin Page</h1>
-    <p class="text-center text-gray-600 mt-2">Here you can manage all the bookings that were created.</p>
+    <h1 class="text-3xl font-extrabold text-center"><%= current_user.first_name %>'s <%= t('dashboard_admin') %></h1>
+    <p class="text-center text-gray-600 mt-2"><%= t('description_admin') %> </p>
   </div>
 
   <div class="my-5 flex justify-between items-center gap-5">
@@ -22,21 +23,25 @@
   </div>
   
   <div class="mt-4">
-    <div class="flex justify-start  border-t border-slate-2 pt-5">
-      <%= link_to "View all appointments", appointments_path, class: "bg-blue-400 text-white rounded p-4 font-bold" %>
+    <div class="my-5 flex justify-between items-center gap-5">
+      <div class="flex justify-start  border-t border-slate-2 gap-5 pt-5">
+        <%= link_to "View all appointments", appointments_path, class: "bg-blue-400 text-white rounded p-4 font-bold" %>
+        <%= link_to "View all approval for appointments", approval_appointment_path, class: "bg-blue-400 text-white rounded p-4 font-bold" %>
+      </div>
     </div>
     <% if @appointments.scheduled.any? %>
-      <h3 class="font-bold text-2xl mb-6 pt-10">Scheduled appointments</h3>
+      <h3 class="font-bold text-2xl mb-6 pt-10"><%= t('scheduled_appointment') %></h3>
       <table class="w-full table">
         <thead>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_code') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('status') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('pet_name') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('breed') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('kind') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('starts') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('ends') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_type') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('paid') %></th>
         </thead>
         <tbody>
           <% @appointments.scheduled.limit(8).each do |appointment| %>
@@ -48,17 +53,18 @@
     <% end %>
 
     <% if @appointments.processing.any? %>
-      <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Processing appointments</h3>
+      <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2"><%= t('process_appointment') %></h3>
       <table class="w-full table">
         <thead>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_code') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('status') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('pet_name') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('breed') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('kind') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('starts') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('ends') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_type') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('paid') %></th>
         </thead>
         <tbody>
           <% @appointments.processing.limit(8).each do |appointment| %> 
@@ -69,17 +75,18 @@
     <% end %>
 
     <% if @appointments.finished.any? %>
-      <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2">Finished appointments</h3>
+      <h3 class="font-bold text-2xl mb-6 mt-10 pt-10 border-t border-slate-2"><%= t('finish_appointment') %> </h3>
       <table class="w-full table">
         <thead>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Status</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Pet Name</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Breed</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Kind</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Starts</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Ends</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Appointment Type</th>
-          <th class="border border-slate-300 p-3 text-left bg-slate-50">Paid</th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_code') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('status') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('pet_name') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('breed') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('kind') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('starts') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('ends') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('appointment_type') %></th>
+          <th class="border border-slate-300 p-3 text-left bg-slate-50"><%= t('paid') %></th>
         </thead>
         <tbody>
           <% @appointments.finished.limit(8).each do |appointment| %>
