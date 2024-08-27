@@ -1,6 +1,6 @@
 # Spa to Pet BR
 
-É um clone do projeto Pet Spa (https://github.com/diazgio/Petspa) criado por Giordano Díaz de Lima-Peru, GitHub ==> https://github.com/diazgio, X ==> @giordano*diaz; veja playlist (https://www.youtube.com/watch?v=S0sMUK2Y-Lk&list=PLofURAiX_gqROw9ya19AYZIfDS5ZJRIA*) no youtube com todas as aulas, demonstrando o desenvolvimento do projeto.
+É um clone do projeto Pet Spa (https://github.com/diazgio/Petspa) criado por Giordano Díaz de Lima-Peru, GitHub ==> https://github.com/diazgio, X ==> @giordano\*diaz; veja playlist (https://www.youtube.com/watch?v=S0sMUK2Y-Lk&list=PLofURAiX_gqROw9ya19AYZIfDS5ZJRIA_) no youtube com todas as aulas, demonstrando o desenvolvimento do projeto.
 
 A escolha do projeto baseou-se em sua relevância para as tecnologias e conceitos que estou atualmente aprendendo.
 
